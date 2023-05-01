@@ -63,6 +63,8 @@ Entire single-file header code:
 		~atomic_lock() { if (signal == false) { lock.signal = false; lock.lock.unlock(); } }
 		
 		bool AcquiredLock() { return !signal; }
+		
+		void ForceUnlock() { if (!signal) { signal = true; lock.signal = false; lock.lock.unlock(); } }
 	};
 
 #endif
