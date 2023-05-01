@@ -60,7 +60,7 @@ Entire single-file header code:
 			if (signal == false) lock.lock.lock();
 		}
 
-		~atomic_lock() { if (signal == false) { lock.signal = false; lock.lock.unlock(); } }
+		~atomic_lock() { if (!signal) { lock.signal = false; lock.lock.unlock(); } }
 		
 		bool AcquiredLock() { return !signal; }
 		
